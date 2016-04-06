@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>tornado WebSocket example</title>
+</head>
+<body>
+  <div class="container">
+    <h1>tornado WebSocket example</h1>
+    <h3>Django Model Operations</h3>
+
+      <ul id="content">
+      </ul>
+        
+  </div>
+  <script>
+    var source = 'ws://' + window.location.hostname + ':8888/ws';
+    var ws = new WebSocket(source);
+    ws.onopen = function() {
+       console.log('open');
+    };
+    ws.onmessage = function(ev){
+      console.log('event.data');
+      var node = document.createElement("LI");
+      node.innerHTML = event.data;
+      document.getElementById("content").appendChild(node);
+    };
+    ws.onclose = function(ev){
+      console.log(ev);
+    };
+    ws.onerror = function(ev){
+      console.log(ev);
+    };
+  </script>
+</body>
+</html>
